@@ -1,72 +1,58 @@
-import React, { useState, useEffect } from 'react';
-import './stayle.css/style.css';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import Home from './title/Home';
-import News from './title/News';
-import Leagues from './title/Leagues';
-import Players from './title/Players';
-import LiveMatches from './title/LiveMatches';
-import Clubs from './title/Clubs';
-import Registration from './title/Registration';
-import ClubDetails from './title/ClubDetails';
-import Loader from './title/Loader';
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
-const App = () => {
-  const [loading, setLoading] = useState(true);
-  const [darkMode, setDarkMode] = useState(false);
-  const [language, setLanguage] = useState('ar'); // اللغة الافتراضية هي العربية
+// استيراد المكونات
+import Home from "./title/home/Home";
+import LiveMatches from "./title/LIVE/LiveMatches";
+import Login from "./title/login/Login";
+import News from "./title/News/News";
+import Players from "./title/players/Players";
+import PlayerDetails from "./title/players/PlayerDetails";
+import Clubs from "./title/club/Clubs";
+import ClubDetails from "./title/club/ClubDetails";
+import Registration from "./title/registration/Registration";
+import Leagues from "./title/leagues/Leagues";
 
-  const toggleDarkMode = () => setDarkMode(!darkMode);
-  const toggleLanguage = () => setLanguage(language === 'ar' ? 'en' : 'ar');
+// استيراد الأنماط العامة
+import "./style.css";
 
-  useEffect(() => {
-    setTimeout(() => setLoading(false), 2000); // محاكاة تحميل البيانات
-  }, []);
-
+function App() {
   return (
     <Router>
-      {loading ? (
-        <Loader />
-      ) : (
-        <>
-          <header>
-            <h1>{language === 'ar' ? 'مرحبًا بك في عالم كرة القدم!' : 'Welcome to the World of Football!'}</h1>
-            <nav>
-              <Link to="/">{language === 'ar' ? 'الرئيسية' : 'Home'}</Link>
-              <Link to="/news">{language === 'ar' ? 'الأخبار' : 'News'}</Link>
-              <Link to="/leagues">{language === 'ar' ? 'البطولات' : 'Leagues'}</Link>
-              <Link to="/players">{language === 'ar' ? 'اللاعبين' : 'Players'}</Link>
-              <Link to="/live-matches">{language === 'ar' ? 'المباريات المباشرة' : 'Live Matches'}</Link>
-              <Link to="/clubs">{language === 'ar' ? 'الأندية' : 'Clubs'}</Link>
-              <Link to="/registration">{language === 'ar' ? 'التسجيل' : 'Registration'}</Link>
-            </nav>
-            <button onClick={toggleDarkMode} className="mode-toggle">
-              {darkMode ? 'Light Mode' : 'Dark Mode'}
-            </button>
-            <button onClick={toggleLanguage} className="mode-toggle">
-              {language === 'ar' ? 'Switch to English' : 'التبديل إلى العربية'}
-            </button>
-          </header>
-          <main className={darkMode ? 'dark' : 'light'}>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/news" element={<News />} />
-              <Route path="/leagues" element={<Leagues />} />
-              <Route path="/players" element={<Players />} />
-              <Route path="/live-matches" element={<LiveMatches />} />
-              <Route path="/clubs" element={<Clubs />} />
-              <Route path="/registration" element={<Registration />} />
-              <Route path="/club/:id" element={<ClubDetails />} />
-             
-            </Routes>
-          </main>
-          <footer>
-            <p>{language === 'ar' ? '© 2025 عالم كرة القدم. جميع الحقوق محفوظة.' : '© 2025 Football World. All rights reserved.'}</p>
-          </footer>
-        </>
-      )}
+      <div>
+        {/* شريط التنقل */}
+        <header className="header">
+          <h1>Football World</h1>
+          <nav className="nav">
+            <ul>
+              <li><a href="/">Home</a></li>
+              <li><a href="/news">News</a></li>
+              <li><a href="/live-matches">Live Matches</a></li>
+              <li><a href="/players">Players</a></li>
+              <li><a href="/clubs">Clubs</a></li>
+              <li><a href="/leagues">Leagues</a></li>
+              <li><a href="/login">Login</a></li>
+              <li><a href="/registration">Register</a></li>
+            </ul>
+          </nav>
+        </header>
+
+        {/* التوجيهات */}
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/news" element={<News />} />
+          <Route path="/live-matches" element={<LiveMatches />} />
+          <Route path="/players" element={<Players />} />
+          <Route path="/players/:id" element={<PlayerDetails />} />
+          <Route path="/clubs" element={<Clubs />} />
+          <Route path="/clubs/:id" element={<ClubDetails />} />
+          <Route path="/leagues" element={<Leagues />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/registration" element={<Registration />} />
+        </Routes>
+      </div>
     </Router>
   );
-};
+}
 
 export default App;

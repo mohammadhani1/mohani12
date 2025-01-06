@@ -7,12 +7,12 @@ const Clubs = () => {
 
   useEffect(() => {
     // بيانات الأندية كمثال
-    const fetchedClubs = [
+    const fetchedclubs = [
       { id: 1, name: 'ريال مدريد', achievements: '13 دوري أبطال أوروبا' },
       { id: 2, name: 'برشلونة', achievements: '5 دوري أبطال أوروبا' },
       { id: 3, name: 'مانشستر يونايتد', achievements: '3 دوري أبطال أوروبا' },
     ];
-    setClubs(fetchedClubs);
+    setClubs(fetchedclubs);
     setLoading(false);
   }, []);
 

@@ -1,0 +1,22 @@
+.club-details {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .club-details img {
+    width: 300px;
+    height: 200px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+  }
+  
+  .club-details h2 {
+    font-size: 2rem;
+    color: #1e3a8a;
+  }
+  
+  .description {
+    font-size: 1rem;
+    color: #555;
+    margin-top: 15px;
+  }
