@@ -1,7 +1,7 @@
 import React from "react";
-import "./playerdetails.css";
+import "./PlayerDetails.css";
 
-function playerdetails({ player }) {
+function PlayerDetails({ player }) {
   const samplePlayer = {
     name: "Lionel Messi",
     image: "/images/messi.png",
@@ -32,4 +32,4 @@ function playerdetails({ player }) {
   );
 }
 
-export default playerdetails;
+export default PlayerDetails;

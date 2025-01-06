@@ -1,7 +1,7 @@
 import React from "react";
-import "./clubdetails.css";
+import "./ClubDetails.css";
 
-function clubdetails({ club }) {
+function ClubDetails({ club }) {
   const sampleClub = {
     name: "Barcelona",
     image: "/images/barcelona.png",
@@ -23,4 +23,4 @@ function clubdetails({ club }) {
   );
 }
 
-export default clubdetails;
+export default ClubDetails;

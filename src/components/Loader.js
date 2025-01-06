@@ -1,5 +1,5 @@
 import React from 'react';
-import '../stayle.css/style.css';
+
 
 const Loader = () => {
   return (
