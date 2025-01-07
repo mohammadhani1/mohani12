@@ -1,51 +1,97 @@
-import React from "react";
-import "./register.css";
+import React, { useState } from "react";
+import "../src/registration.css";
 
-const Register = () => {
+function Register() {
+  const [formData, setFormData] = useState({
+    username: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
+  const [error, setError] = useState("");
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const { username, email, password, confirmPassword } = formData;
+
+    if (!username || !email || !password || !confirmPassword) {
+      setError("All fields are required.");
+    } else if (password.length < 6) {
+      setError("Password must be at least 6 characters.");
+    } else if (password !== confirmPassword) {
+      setError("Passwords do not match.");
+    } else {
+      setError("");
+      alert(`Account created successfully for ${username}!`);
+    }
+  };
+
   return (
     <div className="register">
-      <header className="header">
+      <div className="register-container">
         <h1>Register</h1>
-        <nav>
-          <ul className="nav-list">
-            <li><a href="/">Home</a></li>
-            <li><a href="/news">News</a></li>
-            <li><a href="/live-matches">Live Matches</a></li>
-            <li><a href="/players">Players</a></li>
-            <li><a href="/clubs">Clubs</a></li>
-            <li><a href="/leagues">Leagues</a></li>
-            <li><a href="/login">Login</a></li>
-            <li><a href="/register">Register</a></li>
-          </ul>
-        </nav>
-      </header>
-
-      <main>
-        <section className="register-section">
-          <h2>Create a New Account</h2>
-          <form className="register-form">
-            <label htmlFor="username">Username:</label>
-            <input type="text" id="username" placeholder="Enter your username" />
-            
-            <label htmlFor="email">Email:</label>
-            <input type="email" id="email" placeholder="Enter your email" />
-            
-            <label htmlFor="password">Password:</label>
-            <input type="password" id="password" placeholder="Enter your password" />
-            
-            <label htmlFor="confirm-password">Confirm Password:</label>
-            <input type="password" id="confirm-password" placeholder="Confirm your password" />
-            
-            <button type="submit">Register</button>
-          </form>
-        </section>
-      </main>
-
-      <footer className="footer">
-        <p>&copy; 2025 Football World. All rights reserved.</p>
-      </footer>
+        {error && <p className="error">{error}</p>}
+        <form onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label htmlFor="username">Username</label>
+            <input
+              type="text"
+              id="username"
+              name="username"
+              value={formData.username}
+              onChange={handleChange}
+              placeholder="Enter your username"
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              placeholder="Enter your email"
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              placeholder="Enter your password"
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="confirmPassword">Confirm Password</label>
+            <input
+              type="password"
+              id="confirmPassword"
+              name="confirmPassword"
+              value={formData.confirmPassword}
+              onChange={handleChange}
+              placeholder="Confirm your password"
+              required
+            />
+          </div>
+          <button type="submit" className="btn">Register</button>
+        </form>
+        <p className="login-link">
+          Already have an account? <a href="/login">Login</a>
+        </p>
+      </div>
     </div>
   );
-};
+}
 
 export default Register;

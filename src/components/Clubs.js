@@ -1,56 +1,52 @@
 import React from "react";
 import "./Clubs.css";
 
-const Clubs = () => {
+function Clubs() {
+  const clubs = [
+    {
+      name: "Real Madrid",
+      country: "Spain",
+      stadium: "Santiago Bernabéu",
+      logo: "https://upload.wikimedia.org/wikipedia/en/5/56/Real_Madrid_CF.svg",
+    },
+    {
+      name: "Barcelona",
+      country: "Spain",
+      stadium: "Camp Nou",
+      logo: "https://upload.wikimedia.org/wikipedia/en/4/47/FC_Barcelona_%28crest%29.svg",
+    },
+    {
+      name: "Manchester United",
+      country: "England",
+      stadium: "Old Trafford",
+      logo: "https://upload.wikimedia.org/wikipedia/en/7/7a/Manchester_United_FC_crest.svg",
+    },
+    {
+      name: "Paris Saint-Germain (PSG)",
+      country: "France",
+      stadium: "Parc des Princes",
+      logo: "https://upload.wikimedia.org/wikipedia/en/a/a7/Paris_Saint-Germain_F.C..svg",
+    },
+  ];
+
   return (
     <div className="clubs">
-      <header className="header">
-        <h1>Top Football Clubs</h1>
-        <nav>
-          <ul className="nav-list">
-            <li><a href="/">Home</a></li>
-            <li><a href="/news">News</a></li>
-            <li><a href="/live-matches">Live Matches</a></li>
-            <li><a href="/players">Players</a></li>
-            <li><a href="/clubs">Clubs</a></li>
-            <li><a href="/leagues">Leagues</a></li>
-            <li><a href="/login">Login</a></li>
-            <li><a href="/register">Register</a></li>
-          </ul>
-        </nav>
-      </header>
-
-      <main>
-        <section className="clubs-section">
-          <h2>Explore Famous Clubs</h2>
-          <div className="club-card">
-            <img
-              src="https://upload.wikimedia.org/wikipedia/commons/b/b5/FC_Barcelona_crest.svg"
-              alt="FC Barcelona"
-              className="club-image"
-            />
-            <h3>FC Barcelona</h3>
-            <p>Country: Spain</p>
-            <p>Achievements: 26 La Liga Titles, 5 Champions League Titles</p>
+      <h1>Famous Football Clubs</h1>
+      <div className="clubs-container">
+        {clubs.map((club, index) => (
+          <div key={index} className="club-card">
+            <img src={club.logo} alt={club.name} />
+            <h3>{club.name}</h3>
+            <p><strong>Country:</strong> {club.country}</p>
+            <p><strong>Stadium:</strong> {club.stadium}</p>
+            <a href={`/club-details/${club.name.replaceAll(" ", "-").toLowerCase()}`} className="club-link">
+              View Details
+            </a>
           </div>
-          <div className="club-card">
-            <img
-              src="https://upload.wikimedia.org/wikipedia/commons/5/53/Real_Madrid_CF.svg"
-              alt="Real Madrid"
-              className="club-image"
-            />
-            <h3>Real Madrid</h3>
-            <p>Country: Spain</p>
-            <p>Achievements: 35 La Liga Titles, 14 Champions League Titles</p>
-          </div>
-        </section>
-      </main>
-
-      <footer className="footer">
-        <p>&copy; 2025 Football World. All rights reserved.</p>
-      </footer>
+        ))}
+      </div>
     </div>
   );
-};
+}
 
 export default Clubs;

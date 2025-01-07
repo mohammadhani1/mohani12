@@ -1,56 +1,52 @@
 import React from "react";
 import "./Players.css";
 
-const Players = () => {
+function Players() {
+  const players = [
+    {
+      name: "Lionel Messi",
+      team: "Inter Miami",
+      position: "Forward",
+      image: "https://upload.wikimedia.org/wikipedia/commons/6/67/Lionel_Messi_2018.jpg",
+    },
+    {
+      name: "Cristiano Ronaldo",
+      team: "Al-Nassr",
+      position: "Forward",
+      image: "https://upload.wikimedia.org/wikipedia/commons/8/8c/Cristiano_Ronaldo_2018.jpg",
+    },
+    {
+      name: "Kylian Mbappé",
+      team: "Paris Saint-Germain",
+      position: "Forward",
+      image: "https://upload.wikimedia.org/wikipedia/commons/a/a8/Kylian_Mbapp%C3%A9_in_2019.jpg",
+    },
+    {
+      name: "Kevin De Bruyne",
+      team: "Manchester City",
+      position: "Midfielder",
+      image: "https://upload.wikimedia.org/wikipedia/commons/7/7c/Kevin_De_Bruyne_2018.jpg",
+    },
+  ];
+
   return (
     <div className="players">
-      <header className="header">
-        <h1>Top Football Players</h1>
-        <nav>
-          <ul className="nav-list">
-            <li><a href="/">Home</a></li>
-            <li><a href="/news">News</a></li>
-            <li><a href="/live-matches">Live Matches</a></li>
-            <li><a href="/players">Players</a></li>
-            <li><a href="/clubs">Clubs</a></li>
-            <li><a href="/leagues">Leagues</a></li>
-            <li><a href="/login">Login</a></li>
-            <li><a href="/register">Register</a></li>
-          </ul>
-        </nav>
-      </header>
-
-      <main>
-        <section className="players-section">
-          <h2>Player Profiles</h2>
-          <div className="player-card">
-            <img
-              src="https://upload.wikimedia.org/wikipedia/commons/8/89/Cristiano_Ronaldo_2018.jpg"
-              alt="Cristiano Ronaldo"
-              className="player-image"
-            />
-            <h3>Cristiano Ronaldo</h3>
-            <p>Position: Forward</p>
-            <p>Achievements: 5 Ballon d'Or Awards, 700+ Career Goals</p>
+      <h1>Famous Players</h1>
+      <div className="players-container">
+        {players.map((player, index) => (
+          <div key={index} className="player-card">
+            <img src={player.image} alt={player.name} />
+            <h3>{player.name}</h3>
+            <p><strong>Team:</strong> {player.team}</p>
+            <p><strong>Position:</strong> {player.position}</p>
+            <a href={`/player-details/${player.name.replaceAll(" ", "-").toLowerCase()}`} className="player-link">
+              View Details
+            </a>
           </div>
-          <div className="player-card">
-            <img
-              src="https://upload.wikimedia.org/wikipedia/commons/8/80/Lionel_Messi_20180626.jpg"
-              alt="Lionel Messi"
-              className="player-image"
-            />
-            <h3>Lionel Messi</h3>
-            <p>Position: Forward</p>
-            <p>Achievements: 7 Ballon d'Or Awards, FIFA World Cup Winner 2022</p>
-          </div>
-        </section>
-      </main>
-
-      <footer className="footer">
-        <p>&copy; 2025 Football World. All rights reserved.</p>
-      </footer>
+        ))}
+      </div>
     </div>
   );
-};
+}
 
 export default Players;

@@ -1,4 +1,4 @@
-.login {
+.register {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -6,7 +6,7 @@
   background: linear-gradient(to right, #1e3a8a, #3b82f6);
 }
 
-.login-container {
+.register-container {
   width: 400px;
   padding: 30px;
   background: white;
@@ -15,7 +15,7 @@
   text-align: center;
 }
 
-.login-container h1 {
+.register-container h1 {
   font-size: 2rem;
   color: #1e3a8a;
   margin-bottom: 20px;
@@ -67,16 +67,16 @@
   background-color: #3b82f6;
 }
 
-.signup-link {
+.login-link {
   margin-top: 15px;
   font-size: 0.9rem;
 }
 
-.signup-link a {
+.login-link a {
   color: #1e3a8a;
   text-decoration: none;
 }
 
-.signup-link a:hover {
+.login-link a:hover {
   text-decoration: underline;
 }

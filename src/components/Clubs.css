@@ -1,23 +1,64 @@
-/* نفس التنسيق كـ Players مع تعديل أسماء الفئات */
-.clubs-section {
-    padding: 2rem;
-    background: #f4f4f4;
-    text-align: center;
-  }
-  
-  .club-card {
-    display: inline-block;
-    background: #fff;
-    margin: 1rem;
-    padding: 1rem;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 300px;
-    text-align: center;
-  }
-  
-  .club-image {
-    max-width: 100%;
-    border-radius: 8px;
-    margin-bottom: 1rem;
-  }
+.clubs {
+  padding: 20px;
+  text-align: center;
+}
+
+.clubs h1 {
+  font-size: 2.5rem;
+  color: #1e3a8a;
+  margin-bottom: 20px;
+}
+
+.clubs-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.club-card {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  text-align: center;
+  padding: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.club-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+}
+
+.club-card img {
+  width: 100px;
+  height: 100px;
+  margin-bottom: 15px;
+}
+
+.club-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: #1e3a8a;
+}
+
+.club-card p {
+  font-size: 1rem;
+  margin-bottom: 10px;
+  color: #555;
+}
+
+.club-link {
+  display: inline-block;
+  padding: 10px 15px;
+  background-color: #1e3a8a;
+  color: white;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.club-link:hover {
+  background-color: #3b82f6;
+}

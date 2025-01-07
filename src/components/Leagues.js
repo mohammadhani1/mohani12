@@ -1,56 +1,47 @@
 import React from "react";
 import "./Leagues.css";
 
-const Leagues = () => {
+function Leagues() {
+  const leagues = [
+    {
+      name: "Premier League",
+      country: "England",
+      logo: "https://upload.wikimedia.org/wikipedia/en/f/f2/Premier_League_Logo.svg",
+    },
+    {
+      name: "La Liga",
+      country: "Spain",
+      logo: "https://upload.wikimedia.org/wikipedia/en/c/cf/LaLiga.svg",
+    },
+    {
+      name: "Bundesliga",
+      country: "Germany",
+      logo: "https://upload.wikimedia.org/wikipedia/en/d/df/Bundesliga_logo_%282017%29.svg",
+    },
+    {
+      name: "Serie A",
+      country: "Italy",
+      logo: "https://upload.wikimedia.org/wikipedia/en/e/e1/Serie_A_logo_%282019%29.svg",
+    },
+  ];
+
   return (
     <div className="leagues">
-      <header className="header">
-        <h1>Football Leagues</h1>
-        <nav>
-          <ul className="nav-list">
-            <li><a href="/">Home</a></li>
-            <li><a href="/news">News</a></li>
-            <li><a href="/live-matches">Live Matches</a></li>
-            <li><a href="/players">Players</a></li>
-            <li><a href="/clubs">Clubs</a></li>
-            <li><a href="/leagues">Leagues</a></li>
-            <li><a href="/login">Login</a></li>
-            <li><a href="/register">Register</a></li>
-          </ul>
-        </nav>
-      </header>
-
-      <main>
-        <section className="leagues-section">
-          <h2>Top Football Leagues</h2>
-          <div className="league-card">
-            <img
-              src="https://upload.wikimedia.org/wikipedia/en/f/f2/Premier_League_Logo.svg"
-              alt="Premier League"
-              className="league-image"
-            />
-            <h3>Premier League</h3>
-            <p>Country: England</p>
-            <p>Top Teams: Manchester City, Liverpool, Manchester United</p>
+      <h1>Top Football Leagues</h1>
+      <div className="leagues-container">
+        {leagues.map((league, index) => (
+          <div key={index} className="league-card">
+            <img src={league.logo} alt={league.name} />
+            <h3>{league.name}</h3>
+            <p><strong>Country:</strong> {league.country}</p>
+            <a href={`/league-details/${league.name.replaceAll(" ", "-").toLowerCase()}`} className="league-link">
+              View Details
+            </a>
           </div>
-          <div className="league-card">
-            <img
-              src="https://upload.wikimedia.org/wikipedia/en/2/2e/La_Liga_logo.svg"
-              alt="La Liga"
-              className="league-image"
-            />
-            <h3>La Liga</h3>
-            <p>Country: Spain</p>
-            <p>Top Teams: Real Madrid, FC Barcelona, Atletico Madrid</p>
-          </div>
-        </section>
-      </main>
-
-      <footer className="footer">
-        <p>&copy; 2025 Football World. All rights reserved.</p>
-      </footer>
+        ))}
+      </div>
     </div>
   );
-};
+}
 
 export default Leagues;

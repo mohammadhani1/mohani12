@@ -1,45 +1,64 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Login.css";
 
-const Login = () => {
+function Login() {
+  const [formData, setFormData] = useState({ username: "", password: "" });
+  const [error, setError] = useState("");
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!formData.username || !formData.password) {
+      setError("Both fields are required.");
+    } else if (formData.password.length < 6) {
+      setError("Password must be at least 6 characters.");
+    } else {
+      setError("");
+      alert(`Welcome back, ${formData.username}!`);
+    }
+  };
+
   return (
     <div className="login">
-      <header className="header">
+      <div className="login-container">
         <h1>Login</h1>
-        <nav>
-          <ul className="nav-list">
-            <li><a href="/">Home</a></li>
-            <li><a href="/news">News</a></li>
-            <li><a href="/live-matches">Live Matches</a></li>
-            <li><a href="/players">Players</a></li>
-            <li><a href="/clubs">Clubs</a></li>
-            <li><a href="/leagues">Leagues</a></li>
-            <li><a href="/login">Login</a></li>
-            <li><a href="/register">Register</a></li>
-          </ul>
-        </nav>
-      </header>
-
-      <main>
-        <section className="login-section">
-          <h2>Login to Your Account</h2>
-          <form className="login-form">
-            <label htmlFor="username">Username:</label>
-            <input type="text" id="username" placeholder="Enter your username" />
-            
-            <label htmlFor="password">Password:</label>
-            <input type="password" id="password" placeholder="Enter your password" />
-            
-            <button type="submit">Login</button>
-          </form>
-        </section>
-      </main>
-
-      <footer className="footer">
-        <p>&copy; 2025 Football World. All rights reserved.</p>
-      </footer>
+        {error && <p className="error">{error}</p>}
+        <form onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label htmlFor="username">Username</label>
+            <input
+              type="text"
+              id="username"
+              name="username"
+              value={formData.username}
+              onChange={handleChange}
+              placeholder="Enter your username"
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              placeholder="Enter your password"
+              required
+            />
+          </div>
+          <button type="submit" className="btn">Login</button>
+        </form>
+        <p className="signup-link">
+          Don't have an account? <a href="/register">Sign up</a>
+        </p>
+      </div>
     </div>
   );
-};
+}
 
 export default Login;
